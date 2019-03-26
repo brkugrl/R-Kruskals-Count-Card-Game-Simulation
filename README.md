@@ -1,19 +1,3 @@
 # R-Kruskals-Count-Card-Game-Simulation
-#After changing the face value, I saw that the distribution changes. This game
-#reaches the same card more often when the face values is smaller. For example when face value
-#is 1 approximately %80 percentage of the trials end up in the same card 10 times,%5 percentage 
-#of the trials end up in the same card 9 times. However, when face value is 9
-#approximately %32 trials end up in the same card 10 times,approximately %12 trials end up in the same 
-#card 9 times(These percentage values might change if we simulate 
-#this program again). This means that, if we increase the number of jumps between cards, 
-#this game tends to end up in the same card more often. Because the average step increase
-#as we decrease the face value. The density of the average step(1/average step) 
-#decreases as average step increases. So probability of hitting same card increases as density
-#decreases. This means that if we decrease the face value, the probability of hitting same card
-#increases. So our results are true.
-#Same thing happen for 104 cards.If we have 104 cards, average number step is higher than the 
-#previous case. Assume that number of step is 17. Assume that probability of hitting a 
-#key card is 0.1. Probability of not hitting the key card is 0.9(key card is card that will end up
-#int the same card). If we multiply 0.9 by 17 times, it will be very close to 0.
-#This means that probability of miising a key card is nearly 0. We reach same card %98 percent 
-#for the most cases. So our result is true.
+  The Kruskal Count is a card game invented by Martin J. Kruskal. In that game a magician guesses a card selected by a player. It an be assumed that with high probability the magician can correctly guess the card. In that game player choose a card within first 10 cards and player move forwards by looking the value of the card that he/she choosed. For example, if player starts at fifth card and if the value on the fifth card is 10, player move to the 15th card. Game continues like this. Most propbably, all players reach the same card at the end of the game. In my simulation I compared the theoretical results and real results by changing the face value of the card(1,3,5,7,9) and I simulated the game for 10000 times. After each play(playing tha game for all of the first 10 cards) I calculated the distribution of the ending point of the game. I calculated the number of the most common element of the result and I pushed that value to the final result. For example, if the game ends like this [48,48,48,48,48,51,51,50,48,52], the most common element is 48 and there are 6 of them. ı pushed the value 6 to the final result to determine that the game ends at the same card or not. 
+  I also change the face values to make it more complicated. After changing the face value, I saw that the distribution changes. according to the simulation results, this game reaches the same card more often when the face values is smaller. For example when face value is 1 approximately %80 percentage of the trials end up in the same card 10 times,%5 percentage of the trials end up in the same card 9 times. However, when face value is 9approximately %32 trials end up in the same card 10 times,approximately %12 trials end up in the same card 9 times(These percentage values might change if we simulate this program again). This means that, if we increase the number of jumps between cards, this game tends to end up in the same card more often. Because the average step increaseas we decrease the face value. The density of the average step(1/average step) decreases as average step increases. So probability of hitting same card increases as densitydecreases. This means that if we decrease the face value, the probability of hitting same card increases. So our results are true.Same thing happen for 104 cards.If we have 104 cards, average number step is higher than the previous case. Assume that number of step is 17. Assume that probability of hitting a key card is 0.1. Probability of not hitting the key card is 0.9(key card is card that will end up int the same card). If we multiply 0.9 by 17 times, it will be very close to 0.This means that probability of miising a key card is nearly 0. We reach same card %98 percent for the most cases. So our result is true.

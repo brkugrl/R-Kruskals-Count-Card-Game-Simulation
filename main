@@ -1,0 +1,87 @@
+#@author Berke Ugurlu
+#Kruskal's Count Card game Simulation for 52 cards
+
+#This method finds the most common element of a vector
+#@param It takes vector v as the parameter
+#@returns It returs the most common element in a given vector 
+findModeOfVector <- function(v) {
+  differentValue <- unique(v)
+  differentValue[which.max(tabulate(match(v, differentValue)))]
+}
+
+#These values are predefined values. This value shows the value of the card face
+faceCardsValues <- c(1,3,5,7,9)
+
+#This vector gives the final result of the game.
+#First row of this matrix show the result of the game when face value is 1
+#Fifth row of this matrix show the result of the game when face value is 9
+finalResult <- c()
+
+#We need to play this game for 5 times  which represents the 5 different predefined face values
+for(t in 1:5){
+  
+  resultOftheGame <- rep(0,10)
+  #10000 sample is sufficient enought to see the result of the game
+  for(k in 1:10000){
+    
+    #Creating the decks
+    deck2 <- c()
+    deck <- c()
+  
+    for (i in 1:13){
+      for(y in 1:4){
+      
+        if(i > 10){
+          deck2 <- append(deck2,faceCardsValues[t])
+        }
+        else{
+          deck2 <- append(deck2,i)
+        }
+      }
+  
+    }
+    #Shuffling the deck
+    deck <- sample(deck2)
+    endingIndex <- 1
+    y <- floor(10 * runif(1) + 1)
+
+    valueOfIndex <- c()
+    for(i in 1:10){
+      valueOfIndex <- append(valueOfIndex,0)
+    }
+    valuesForOneShuffle <- c()
+    
+    #This part is the main algorithm of the game
+    #It finds the ending point of the game  and push that
+    #result to a vector
+    for(i in 1:10){
+      endingIndex <- i
+      
+      while(endingIndex < 52){
+        temp <- endingIndex
+        endingIndex <- deck[endingIndex] + endingIndex
+      }
+      valuesForOneShuffle <- append(valuesForOneShuffle,temp)
+    }  
+
+    #This part finds the number of the most common element
+    count <- 0
+    x <- findModeOfVector(valuesForOneShuffle)
+    for(i in 1:10){
+      if(valuesForOneShuffle[i] == x){
+        count = count + 1
+      }
+    }  
+
+    resultOftheGame[count] = resultOftheGame[count] + 1
+    }
+    for(y in 1:10){
+      resultOftheGame[y] <- resultOftheGame[y] / 10000
+    }
+    finalResult <- rbind(finalResult, resultOftheGame)
+    #print(resultOftheGame)
+
+}
+print("Results for 52 cards and 5 different predefined face values")
+print(finalResult)
+
